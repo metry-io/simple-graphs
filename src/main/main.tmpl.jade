@@ -25,15 +25,13 @@
 
 .mry-content.mry-form.mry-has-meter-header.mry-simple-chart-container(ng-if='!ctrl.loadingMeter && ctrl.meterCount > 0')
   .mry-chart-bg
-    .container-fluid
-      .row
-        .col-sm-12.mry-chart-container(ng-style='::{height: ctrl.getChartHeight() + "px"}')
-          h1(ng-hide='ctrl.hasData', translate) This meter has no consumption data. The responsible collection robot may not have finished yet.
-          .mry-spinner.mry-spinner-white(style='height: 100%', ng-show='ctrl.loadingChartData')
-          highchart#chart1(
-            config='ctrl.chartConfig'
-            ng-if='ctrl.hasData && !ctrl.loadingChartData'
-          )
+    .mry-chart-container
+      h1(ng-hide='ctrl.hasData', translate) This meter has no consumption data.
+      highchart#chart1(
+        config='ctrl.chartConfig'
+        ng-if='ctrl.hasData'
+      )
+      .mry-spinner.mry-spinner-white(style='position: absolute; top:0; left: 0; bottom: 0; right: 0', ng-show='ctrl.loadingChartData')
   .mry-chart-select-bg
     .container-fluid
       .row

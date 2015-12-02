@@ -143,7 +143,6 @@ module.exports = /*@ngInject*/ function(
         zoomType: false,
         pinchType: false,
         backgroundColor: 'rgba(255, 255, 255, 0.002)',
-        height: 2 * $window.innerHeight / 3
       }
     }
   };
@@ -185,10 +184,6 @@ module.exports = /*@ngInject*/ function(
 
     setChartDirty();
   });
-
-  this.getChartHeight = function getChartHeight() {
-    return 2 * $window.innerHeight / 3;
-  };
 
   this.toggleMeters = function toggleMeters(visible) {
     _this.metersVisible = visible;
@@ -319,10 +314,6 @@ module.exports = /*@ngInject*/ function(
         pointInterval: pointInterval
       }
     ];
-  }
-
-  function isSmallScreen() {
-    return $window.innerWidth <= 768;
   }
 
   function reloadMeter() {

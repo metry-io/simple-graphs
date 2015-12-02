@@ -1,6 +1,15 @@
 @usermeters-transition: all 0.3s ease-in-out;
 @mry-darker-grey: darken(@mry-grey, 6%);
 
+main {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .mry-meter-header {
   position: absolute;
   top: 0;
@@ -46,7 +55,22 @@
   display: flex;
   flex-direction: column;
 
-  > .mry-chart-bg { flex: 1; }
+  > .mry-chart-bg {
+    flex: 1;
+    position: relative;
+
+    .mry-chart-container {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+
+      #chart1 {
+        height: 100%;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: @screen-xs) {
@@ -64,10 +88,10 @@
       margin: 10px;
       height: 30px;
     }
+  }
 
-    .mry-has-meter-header {
-      margin-top: 50px;
-    }
+  .mry-has-meter-header {
+    margin-top: 50px;
   }
 }
 
@@ -78,10 +102,6 @@
 
 .mry-chart-select-bg { background-color: @mry-darker-grey; }
 
-.mry-chart-container {
-  width: 100%;
-  padding: 5px 0;
-}
 
 .usermeters-list {
   display: block;
