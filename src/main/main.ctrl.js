@@ -175,6 +175,11 @@ module.exports = /*@ngInject*/ function(
     _this.datePicker.date = emDateUtil.getDate(maxPeriod);
     _this.comparePeriod = 0;
 
+    _this.chartConfig.options.yAxis = {
+      max: _this.energy[GRANULARITIES[_this.view]].max,
+      min: 0
+    };
+
     setChartDirty();
   });
 
