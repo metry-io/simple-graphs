@@ -1,0 +1,134 @@
+@usermeters-transition: all 0.3s ease-in-out;
+@mry-darker-grey: darken(@mry-grey, 6%);
+
+.mry-meter-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35px;
+  background-color: @mry-bg-white;
+  border-bottom: 1px solid darken(@mry-grey, 8%);
+  box-shadow: 0 0 5px 0 darken(@mry-grey, 18%);
+  z-index: 110;
+
+  .mry-change-meter-button {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 6px 4px 5px 4px;
+    height: 24px;
+  }
+
+  .mry-logout-button {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 6px 4px 5px 4px;
+    height: 24px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 7px 0 5px 0;
+  }
+}
+
+.mry-has-meter-header {
+  margin-top: 35px;
+}
+
+.mry-simple-chart-container {
+  display: flex;
+  flex-direction: column;
+
+  > .mry-chart-bg { flex: 1; }
+}
+
+@media screen and (min-width: @screen-xs) {
+  .mry-meter-header {
+    height: 50px;
+
+    h1 {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 14px 0 10px 0;
+    }
+
+    .mry-change-meter-button,
+    .mry-logout-button {
+      margin: 10px;
+      height: 30px;
+    }
+
+    .mry-has-meter-header {
+      margin-top: 50px;
+    }
+  }
+}
+
+.mry-chart-bg {
+  background-color: @mry-grey;
+  background: linear-gradient(to bottom, @mry-grey, @mry-darker-grey);
+}
+
+.mry-chart-select-bg { background-color: @mry-darker-grey; }
+
+.mry-chart-container {
+  width: 100%;
+  padding: 5px 0;
+}
+
+.usermeters-list {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: @usermeters-transition;
+  z-index: 115;
+
+  > h2, > ul, > ul > li { display: block; }
+
+  > ul > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h2 {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: @screen-sm) {
+  .usermeters-list {
+    transform: translate3d(0, 100%, 0);
+
+    &.mry-visible { transform: translate3d(0, 0, 0); }
+  }
+
+  .mry-chart-bg { padding: 10px 5px 5px 5px; }
+  .mry-chart-select-bg { padding: 20px 5px 20px 5px; }
+}
+
+@media screen and (min-width: 769px) {
+  .usermeters-list {
+    width: 20vw;
+    min-width: 200px;
+    transform: translate3d(-100%, 0, 0);
+
+    &.mry-visible {
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 0 6px 0 fade(darken(@mry-grey, 50%), 40%);
+    }
+  }
+
+  .mry-chart-bg { padding: 60px 6% 0 6%; }
+  .mry-chart-select-bg { padding: 30px 6% 40px 6%; }
+}

@@ -1,0 +1,11 @@
+.mry-alert-container
+  .mry-alert
+    .mry-alert-title {{ title }}
+    .mry-alert-body
+      p(ng-bind-html='message')
+    .mry-alert-footer
+      button.mry-button(
+        ng-repeat='button in buttons'
+        ng-click='dismiss($index)'
+        ng-class='button.class'
+      ) {{ button.text  }}

@@ -1,0 +1,35 @@
+.mry-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  h1 {
+    color: @mry-text-dark;
+    font-size: 20px;
+    margin: 25px 0 5px 0;
+    font-weight: 500;
+
+    &.huge {
+      font-size: 40px;
+    }
+  }
+
+  h2 {
+    margin: 20px 0 10px 0;
+    color: @mry-text-light;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  p.mry-intro { margin: 15px 0 20px 0; }
+  p.mry-padded { margin: 0 15px; }
+  .mry-margin-bottom { margin-bottom: 30px; }
+
+  small,
+  .small {
+    font-size: floor((100% * @font-size-small / @font-size-base));
+  }
+}

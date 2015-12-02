@@ -1,0 +1,8 @@
+**/.DS_Store
+node_modules
+dist/
+npm-debug.log
+bower_components/
+*.swp
+src/config.json
+translations/*.pot

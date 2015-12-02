@@ -1,0 +1,144 @@
+@mry-button-default: @mry-blue-dark;
+@mry-button-active: darken(@mry-blue-dark, 6%);
+@mry-button-disabled: darken(@mry-grey, 30%);
+@mry-button-danger: @mry-red-dark;
+@mry-button-warning: @mry-yellow;
+
+.mry-button {
+  display: inline-block;
+  border: 1px solid darken(@mry-button-default, 5%);
+  border-radius: 4px;
+  background-color: @mry-button-default;
+  color: @mry-text-white;
+  padding: 2px 10px;
+  height: 30px;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover {
+    color: @mry-text-white;
+    text-decoration: none;
+    background-color: lighten(@mry-button-default, 5%);
+  }
+
+  &:focus {
+    outline: 0;
+    color: @mry-text-white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: @mry-button-active;
+  }
+
+  &:disabled {
+    background-color: @mry-button-disabled;
+    border: 1px solid darken(@mry-button-disabled, 5%);
+    padding: 2px 10px;
+  }
+}
+
+.mry-button.mry-button-spaced {
+  margin-right: 10px;
+}
+
+.mry-button.mry-danger {
+  background-color: @mry-button-danger;
+  border: 1px solid darken(@mry-button-danger, 5%);
+
+  &:hover {
+    background-color: lighten(@mry-button-danger, 5%);
+  }
+
+  &:active {
+    background-color: darken(@mry-button-danger, 6%);
+  }
+
+  &:disabled {
+    background-color: @mry-button-disabled;
+    border: 1px solid darken(@mry-button-disabled, 5%);
+    padding: 2px 10px;
+  }
+}
+
+.mry-button.mry-warning {
+  background-color: @mry-button-warning;
+  color: @mry-text-dark;
+  border: 1px solid darken(@mry-button-warning, 30%);
+
+  &:hover {
+    background-color: lighten(@mry-button-warning, 5%);
+  }
+
+  &:active {
+    background-color: darken(@mry-button-warning, 6%);
+    color: @mry-text-dark;
+  }
+
+  &:disabled {
+    background-color: @mry-button-disabled;
+    border: 1px solid darken(@mry-button-disabled, 5%);
+    padding: 2px 10px;
+  }
+}
+
+.mry-button.mry-lg {
+  padding: 2px 14px;
+  height: 44px;
+  font-size: 14px;
+  line-height: 40px;
+  margin: 5px 0;
+}
+
+.mry-button-group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  > .mry-button {
+    position: relative;
+    float: left;
+    // Bring the "active" button to the front
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+
+    &.active {
+      background-color: @mry-button-active;
+    }
+  }
+}
+
+// Prevent double borders when buttons are next to each other
+.mry-button-group {
+  .mry-button + .mry-button,
+  .mry-button + .mry-button-group,
+  .mry-button-group + .mry-button,
+  .mry-button-group + .mry-button-group {
+    margin-left: -1px;
+  }
+}
+
+.mry-button-group > .mry-button:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  border-radius: 0;
+}
+
+.mry-button-group > .mry-button:first-child {
+  margin-left: 0;
+  &:not(:last-child):not(.dropdown-toggle) {
+    .border-right-radius(0);
+  }
+}
+.mry-button-group > .mry-button:last-child:not(:first-child),
+.mry-button-group > .dropdown-toggle:not(:first-child) {
+  .border-left-radius(0);
+}

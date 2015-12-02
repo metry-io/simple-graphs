@@ -1,0 +1,88 @@
+@item-form-label-size: 13px;
+@item-form-value-size: 14px;
+
+.mry-form {
+  label.mry-form-label {
+    display: block;
+    padding: 0;
+    margin: 15px 0 5px 0;
+    color: @mry-text-light;
+    font-size: @item-form-label-size;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .mry-form-component {
+    display: block;
+    color: @mry-text-dark;
+    font-size: @item-form-value-size;
+    text-transform: none;
+    margin: 0 0 10px 0;
+  }
+
+  input.mry-form-component, select.mry-form-component {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid @mry-text-light;
+    padding: 0;
+
+    &:hover {
+      border-bottom: 1px solid darken(@mry-text-light, 10%);
+      outline: 0;
+    }
+
+    &:focus {
+      border-bottom: 1px solid @mry-text-dark;
+      outline: 0;
+    }
+  }
+
+  .mry-radio {
+    display: inline-block;
+    margin-right: 10px;
+
+    input[type=radio] {
+      margin-right: 5px;
+    }
+
+    label {
+      font-weight: normal;
+    }
+  }
+
+  .mry-input-button {
+    display: flex;
+    height: 30px;
+
+    input {
+      flex: 1;
+      margin: 0;
+      height: 28px;
+    }
+
+    button {
+      margin-left: 5px;
+    }
+  }
+
+  p.mry-form-error {
+    color: @mry-red-dark;
+    font-size: 11px;
+    margin-top: -5px;
+  }
+
+  p.mry-form-description {
+    font-size: 11px;
+    margin-top: -5px;
+  }
+
+  tags-input .tags {
+    border-bottom: 1px solid @mry-text-light;
+    margin: 0 0 10px 0;
+  }
+
+  tags-input .tags.focused {
+    border-bottom: 1px solid @mry-text-dark;
+  }
+}

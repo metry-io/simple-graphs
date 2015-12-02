@@ -1,0 +1,11 @@
+.text-center(ng-show='!resMgr.loading && resMgr.data.length > 0')
+  pagination(
+    next-text!='&rsaquo;'
+    previous-text!='&lsaquo;'
+    boundary-links='true'
+    ng-model='resMgr.pagination.page'
+    ng-change='resMgr.updatePage()'
+    total-items='resMgr.pagination.count'
+    items-per-page='resMgr.pagination.limit'
+    max-size='10')
+  p.small Showing from {{ resMgr.pagination.from }} to {{ resMgr.pagination.to }} of {{ resMgr.pagination.count }} matches

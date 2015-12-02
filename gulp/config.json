@@ -1,0 +1,30 @@
+{
+  "scripts" : {
+    "main": "./src/index.js",
+    "targetName": "bundle.js"
+  },
+  "styles": {
+    "main":  "./src/index.less",
+    "all": "./src/**/*.less",
+    "autoprefixerOptions": "last 3 versions"
+  },
+  "html": {
+    "main": "./src/index.html"
+  },
+  "resources": {
+    "main": "./res/**/*"
+  },
+  "translations": {
+    "extract": {
+      "source" : "./src/**/*.js",
+      "templates": "./src/**/*.jade",
+      "dest": "./translations"
+    },
+    "compile": {
+      "source" : "./translations/**/*.po"
+    }
+  },
+  "dest": {
+    "path": "./dist"
+  }
+}

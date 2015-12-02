@@ -1,0 +1,57 @@
+{
+  "name": "simple-graphs",
+  "version": "1.0.0",
+  "description": "Simple graph visualisations built on Metry platform",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rm -rf ./dist/* && ./node_modules/.bin/gulp",
+    "build": "npm install && rm -rf ./dist/* && ./node_modules/.bin/gulp bundle"
+  },
+  "author": "Torsten Freyhall <torsten.freyhall@energimolnet.se>",
+  "engines": {
+    "node": "5.0.x",
+    "npm": "3.3.x"
+  },
+  "license": "ISC",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/energimolnet/simple-graphs.git"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.3",
+    "browserify": "^12.0.0",
+    "browserify-ngannotate": "^1.0.1",
+    "browserify-plain-jade": "^0.2.2",
+    "bundle-collapser": "^1.2.1",
+    "del": "^2.0.2",
+    "event-stream": "^3.3.1",
+    "gulp": "^3.9.0",
+    "gulp-angular-gettext": "^2.1.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-htmlmin": "^1.1.4",
+    "gulp-jade": "^1.1.0",
+    "gulp-less": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.4.0",
+    "gulp-util": "^3.0.6",
+    "lodash.assign": "^3.2.0",
+    "require-dir": "^0.3.0",
+    "uglifyify": "^3.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0"
+  },
+  "dependencies": {
+    "angular": "^1.4.5",
+    "angular-gettext": "^2.1.0",
+    "angular-sanitize": "^1.4.5",
+    "angular-ui-bootstrap": "^0.13.4",
+    "angular-ui-router": "^0.2.15",
+    "bootstrap": "^3.3.5",
+    "energimolnet-ng": "^0.4.8",
+    "highcharts-ng": "0.0.11"
+  }
+}

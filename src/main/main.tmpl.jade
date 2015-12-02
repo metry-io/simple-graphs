@@ -1,0 +1,170 @@
+.mry-spinner.mry-spinner-white(ng-show='ctrl.resMgr.loading')
+
+.mry-meter-header(ng-if='ctrl.resMgr.pagination.count !== 0')
+    button.mry-button.mry-change-meter-button.hidden-xs(
+      ng-show='ctrl.resMgr.data.length > 1'
+      ng-click='ctrl.toggleMeters(true)'
+      translate
+    ) Change meter
+    button.mry-button.mry-change-meter-button.visible-xs(
+      ng-show='ctrl.resMgr.data.length > 1'
+      ng-click='ctrl.toggleMeters(true)'
+      translate
+    ) •••
+    h1 {{ ctrl.meter | mryMeterTitle }}
+    button.mry-button.mry-logout-button.hidden-xs(
+      ng-click='ctrl.logout()'
+      translate
+    ) Log out
+    button.mry-button.mry-logout-button.visible-xs(
+      ng-click='ctrl.logout()'
+      translate
+    )
+      span.glyphicon.glyphicon-log-out
+
+.mry-content.mry-form.mry-has-meter-header.mry-simple-chart-container
+  .mry-chart-bg(ng-show='!ctrl.resMgr.loading && ctrl.resMgr.pagination.count !== 0')
+    .container-fluid
+      .row
+        .col-sm-12.mry-chart-container(ng-style='::{height: ctrl.getChartHeight() + "px"}')
+          h1(ng-hide='ctrl.hasData', translate) This meter has no consumption data. The responsible collection robot may not have finished yet.
+          .mry-spinner.mry-spinner-white(style='height: 100%', ng-show='ctrl.loadingChartData')
+          highchart#chart1(
+            config='ctrl.chartConfig'
+            ng-if='ctrl.hasData && !ctrl.loadingChartData'
+          )
+  .mry-chart-select-bg(ng-show='!ctrl.resMgr.loading && ctrl.resMgr.pagination.count !== 0')
+    .container-fluid
+      .row
+        .col-sm-6
+          label.mry-form-label(translate) Show
+          .mry-radio
+            input#viewday(
+              type='radio'
+              ng-model='ctrl.view'
+              value='day'
+              ng-disabled='ctrl.energy.hour.count == 0'
+              translate
+            )
+            label(for='viewday') Day
+          .mry-radio
+            input#viewmonth(type='radio'
+              ng-model='ctrl.view'
+              value='month'
+              ng-disabled='ctrl.energy.day.count == 0'
+              translate
+            )
+            label(for='viewmonth') Month
+          .mry-radio
+            input#viewyear(
+              type='radio'
+              ng-model='ctrl.view'
+              value='year'
+              ng-disabled='ctrl.energy.month.count == 0'
+              translate
+            )
+            label(for='viewyear') Year
+          div(ng-switch='ctrl.view')
+            label.mry-form-label(ng-switch-when='day', translate) Select a day
+            label.mry-form-label(ng-switch-when='month', translate) Select month
+            label.mry-form-label(ng-switch-when='year', translate) Select year
+          .mry-input-button
+            input.mry-form-component(
+              type='text'
+              ng-model='ctrl.datePicker.date'
+              datepicker-popup='{{ctrl.pickerConfig.dateFormat}}'
+              show-button-bar='false'
+              datepicker-options='ctrl.pickerConfig.options'
+              datepicker-mode='ctrl.pickerConfig.mode'
+              min-mode='ctrl.pickerConfig.minMode'
+              min-date='ctrl.pickerConfig.minDate'
+              max-date='ctrl.pickerConfig.maxDate'
+              is-open='ctrl.datePicker.open'
+              readonly='true'
+              year-range='8'
+              ng-click='ctrl.datePicker.open = !ctrl.datePicker.open'
+              ng-disabled='!ctrl.hasData')
+            button.mry-button(
+              ng-click='ctrl.datePicker.open = !ctrl.datePicker.open'
+              ng-disabled='!ctrl.hasData'
+            )
+              i.glyphicon.glyphicon-calendar
+        .col-sm-6
+          label.mry-form-label(translate) Compare with
+          div(ng-switch='ctrl.view')
+            div(ng-switch-when='day')
+              .mry-radio
+                input#daybefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='0')
+                label(for='daybefore', translate) Day before
+              .mry-radio
+                input#weekbefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='1')
+                label(for='weekbefore', translate) Week before
+              .mry-radio
+                input#daycustom(type='radio', ng-model='ctrl.comparePeriod', ng-value='"custom"')
+                label(for='daycustom', translate) Custom day
+            div(ng-switch-when='month')
+              .mry-radio
+                input#fourweeksbefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='0')
+                label(for='fourweeksbefore', translate) 4 weeks before
+              .mry-radio
+                input#yearbefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='1')
+                label(for='yearbefore', translate) The year before
+              .mry-radio
+                input#custommonth(type='radio', ng-model='ctrl.comparePeriod', ng-value='"custom"')
+                label(for='custommonth', translate) Custom month
+            div(ng-switch-default)
+              .mry-radio
+                input#yearbefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='0')
+                label(for='yearbefore', translate) The year before
+              .mry-radio
+                input#customyear(type='radio', ng-model='ctrl.comparePeriod', ng-value='"custom"')
+                label(for='customyear', translate) Custom year
+          div(ng-switch='ctrl.view')
+            label.mry-form-label(ng-switch-when='day', translate) Select day to compare with
+            label.mry-form-label(ng-switch-when='month', translate) Select month to compare with
+            label.mry-form-label(ng-switch-when='year', translate) Select year to compare with
+          .mry-input-button
+            input.mry-form-component(
+              type='text'
+              ng-model='ctrl.compareDatePicker.date'
+              datepicker-popup='{{ctrl.pickerConfig.dateFormat}}'
+              show-button-bar='false'
+              datepicker-options='ctrl.pickerConfig.options'
+              datepicker-mode='ctrl.pickerConfig.mode'
+              min-mode='ctrl.pickerConfig.minMode'
+              min-date='ctrl.pickerConfig.minDate'
+              max-date='ctrl.pickerConfig.maxDate'
+              is-open='ctrl.compareDatePicker.open'
+              readonly='true'
+              year-range='8'
+              ng-click='ctrl.compareDatePicker.open = !ctrl.compareDatePicker.open'
+              ng-disabled='ctrl.comparePeriod!="custom" || !ctrl.hasData')
+            button.mry-button(
+              ng-click='ctrl.compareDatePicker.open = !ctrl.compareDatePicker.open'
+              ng-disabled='ctrl.comparePeriod !== "custom" || !ctrl.hasData'
+            )
+              i.glyphicon.glyphicon-calendar
+
+.mry-content.usermeters-graphs.mry-content-centered(ng-if='!ctrl.resMgr.loading && ctrl.resMgr.pagination.count === 0')
+  h1 You don't have any meters
+
+.mry-content.mry-list-group.usermeters-list.mry-compact(
+  ng-class='{"mry-visible": ctrl.metersVisible}'
+  mry-resource-manager='ctrl.resMgr'
+)
+  button.mry-pane-close-button.mry-close-button-right(
+    ng-click='ctrl.toggleMeters(false)'
+  ) &times;
+  h2(translate) Select meter
+  ul
+    li(
+      ng-repeat='meter in ctrl.resMgr.data'
+      ng-class='{active: ctrl.meter === meter}'
+    )
+      a(
+        ng-click='ctrl.setMeter(meter)'
+        href=''
+      )
+        span {{ meter | mryMeterTitle }}
+        span(style='float: right', ng-bind-html='meter | mryMeterTypeIcon')
+  mry-pagination(mry-resource-manager='ctrl.resMgr')
