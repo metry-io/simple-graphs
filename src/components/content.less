@@ -1,3 +1,5 @@
+@mry-toolbar-height: 44px;
+
 .mry-content {
   position: absolute;
   top: 0;
@@ -32,4 +34,63 @@
   .small {
     font-size: floor((100% * @font-size-small / @font-size-base));
   }
+}
+
+.mry-content-wrapper {
+  width: 100%;
+}
+
+.mry-compact .mry-content-wrapper,
+.mry-narrow .mry-content-wrapper {
+  height: 100%;
+}
+
+/* Mobile devices */
+@media screen and (max-width: @screen-sm) {
+  .mry-content {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    &.mry-has-toolbar-top { padding-top: @mry-toolbar-height; }
+    &.mry-has-toolbar-bottom { padding-bottom: @mry-toolbar-height; }
+  }
+
+  .mry-hpadding-lg {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Desktop devices */
+@media screen and (min-width: 769px) {
+  .mry-content {
+    overflow: auto;
+    &.mry-has-toolbar-top { margin-top: @mry-toolbar-height; }
+    &.mry-has-toolbar-bottom { margin-bottom: @mry-toolbar-height; }
+  }
+
+  .mry-hpadding-lg {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+}
+
+.mry-content-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mry-padding-sm { padding: 5px; }
+.mry-padding-md { padding: 15px; }
+
+.mry-vpadding-md {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.mry-vpadding-lg {
+  padding-top: 20%;
+  padding-bottom: 20%;
 }

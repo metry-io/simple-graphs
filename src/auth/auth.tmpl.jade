@@ -1,0 +1,8 @@
+.mry-content(ng-if='ctrl.loading')
+  .mry-spinner.mry-spinner-white
+
+.mry-content.mry-content-centered(ng-if='!ctrl.loading')
+  h1.text-center.huge(translate) Metry Simple Graphs
+  p.text-center(translate) This app demonstrates how you easily can connect your Metry data with third-party services. All you need to do is click the button below!
+  p.text-center
+    metry-connect-button(on-authenticated='ctrl.onAuthDone()')

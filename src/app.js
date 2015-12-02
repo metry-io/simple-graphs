@@ -17,10 +17,11 @@ var app = angular.module('simple-graphs', [
   'gettext',
   require('energimolnet-ng/src/main.js'),
   require('./components'),
+  require('./auth'),
   require('./main')
 ])
 
-.constant('authConfig', {disabled: true})
+.constant('authConfig', config.authConfig)
 .constant('apiBaseUrl', config.apiBaseUrl)
 
 .config(/*@ngInject*/ function(
@@ -34,8 +35,6 @@ var app = angular.module('simple-graphs', [
 })
 
 .run(/*@ngInject*/ function($rootScope, $window, $state) {
-  console.log('Joel is in da house');
-
   $rootScope.$on('mryAuthError', function() {
     $state.go('auth');
   });

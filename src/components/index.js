@@ -8,6 +8,7 @@ angular.module(MODULE_NAME, [
   require('./progress')
 ])
 
+.directive('metryConnectButton', require('./metry-connect-button.directive.js'))
 .directive('mryPagination', require('./pagination.directive.js'))
 .factory('ResourceManager', require('./resource-manager.factory.js'))
 .filter('mryMeterTypeIcon', require('./meter-type-icon.filter.js'))

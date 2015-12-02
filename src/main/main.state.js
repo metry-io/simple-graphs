@@ -9,8 +9,12 @@ module.exports = /*@ngInject*/ function($stateProvider) {
       }
     },
     resolve: {
-      me: /*@ngInject*/ function(emMe) {
-        return emMe.get();
+      me: /*@ngInject*/ function(emMe, $state) {
+        return emMe.get().then(function(me) {
+          return me;
+        }, function(error) {
+          $state.go('auth');
+        });
       }
     }
   });
