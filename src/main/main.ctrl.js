@@ -56,10 +56,13 @@ module.exports = /*@ngInject*/ function(
 
   this.resMgr = new ResourceManager('Meters', filter, false, onMeters);
   this.meter = undefined;
+  this.meterCount = undefined;
   this.metersVisible = false;
   this.view = undefined;
   this.comparePeriod = 0;
   this.hasData = true;
+  this.loadingMeter = true;
+  this.loadingChartData = false;
 
   this.energy = {
     hour: 0,
@@ -198,6 +201,7 @@ module.exports = /*@ngInject*/ function(
 
   this.setMeter = function setMeter(meter) {
     _this.meter = meter;
+    _this.loadingMeter = false;
     var energy = _this.energy = meter.consumption_stats.energy;
 
     if (energy.hour.count + energy.day.count + energy.month.count === 0) {
@@ -331,6 +335,7 @@ module.exports = /*@ngInject*/ function(
 
   function onMeters() {
     if (_this.resMgr.data && !_this.meter) {
+      _this.meterCount = _this.resMgr.pagination.count;
       _this.setMeter(_this.resMgr.data[0]);
     }
   }

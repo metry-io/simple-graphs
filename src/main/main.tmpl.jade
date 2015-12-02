@@ -1,14 +1,14 @@
 .mry-content
-  .mry-spinner.mry-spinner-white(ng-show='ctrl.resMgr.loading')
+  .mry-spinner.mry-spinner-white(ng-show='ctrl.loadingMeter')
 
-.mry-meter-header(ng-if='ctrl.resMgr.pagination.count !== 0')
+.mry-meter-header
     button.mry-button.mry-change-meter-button.hidden-xs(
-      ng-show='ctrl.resMgr.data.length > 1'
+      ng-show='ctrl.meterCount > 0'
       ng-click='ctrl.toggleMeters(true)'
       translate
     ) Change meter
     button.mry-button.mry-change-meter-button.visible-xs(
-      ng-show='ctrl.resMgr.data.length > 1'
+      ng-show='ctrl.meterCount > 0'
       ng-click='ctrl.toggleMeters(true)'
       translate
     ) •••
@@ -23,8 +23,8 @@
     )
       span.glyphicon.glyphicon-log-out
 
-.mry-content.mry-form.mry-has-meter-header.mry-simple-chart-container
-  .mry-chart-bg(ng-show='!ctrl.resMgr.loading && ctrl.resMgr.pagination.count !== 0')
+.mry-content.mry-form.mry-has-meter-header.mry-simple-chart-container(ng-if='!ctrl.loadingMeter && ctrl.meterCount > 0')
+  .mry-chart-bg
     .container-fluid
       .row
         .col-sm-12.mry-chart-container(ng-style='::{height: ctrl.getChartHeight() + "px"}')
@@ -34,7 +34,7 @@
             config='ctrl.chartConfig'
             ng-if='ctrl.hasData && !ctrl.loadingChartData'
           )
-  .mry-chart-select-bg(ng-show='!ctrl.resMgr.loading && ctrl.resMgr.pagination.count !== 0')
+  .mry-chart-select-bg
     .container-fluid
       .row
         .col-sm-6
@@ -146,10 +146,10 @@
             )
               i.glyphicon.glyphicon-calendar
 
-.mry-content.usermeters-graphs.mry-content-centered(ng-if='!ctrl.resMgr.loading && ctrl.resMgr.pagination.count === 0')
+.mry-content.usermeters-graphs.mry-content-centered(ng-if='!ctrl.loadingMeters && ctrl.meterCount === 0')
   h1 You don't have any meters
 
-.mry-content.mry-list-group.usermeters-list.mry-compact(
+.mry-content.mry-list-group.usermeters-list.mry-compact.mry-form(
   ng-class='{"mry-visible": ctrl.metersVisible}'
   mry-resource-manager='ctrl.resMgr'
 )
@@ -157,6 +157,13 @@
     ng-click='ctrl.toggleMeters(false)'
   ) &times;
   h2(translate) Select meter
+  div(style='margin: 15px')
+    input.mry-form-component(
+      type='text'
+      ng-model='search'
+      ng-change='ctrl.resMgr.setFilterOption("q", search)'
+      placeholder='Search address or EAN'
+    )
   ul
     li(
       ng-repeat='meter in ctrl.resMgr.data'
