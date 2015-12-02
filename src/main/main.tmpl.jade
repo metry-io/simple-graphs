@@ -1,4 +1,5 @@
-.mry-spinner.mry-spinner-white(ng-show='ctrl.resMgr.loading')
+.mry-content
+  .mry-spinner.mry-spinner-white(ng-show='ctrl.resMgr.loading')
 
 .mry-meter-header(ng-if='ctrl.resMgr.pagination.count !== 0')
     button.mry-button.mry-change-meter-button.hidden-xs(
@@ -43,7 +44,7 @@
               type='radio'
               ng-model='ctrl.view'
               value='day'
-              ng-disabled='ctrl.energy.hour.count == 0'
+              ng-disabled='!ctrl.energy.hour.first'
               translate
             )
             label(for='viewday') Day
@@ -51,7 +52,7 @@
             input#viewmonth(type='radio'
               ng-model='ctrl.view'
               value='month'
-              ng-disabled='ctrl.energy.day.count == 0'
+              ng-disabled='!ctrl.energy.day.first'
               translate
             )
             label(for='viewmonth') Month
@@ -60,7 +61,7 @@
               type='radio'
               ng-model='ctrl.view'
               value='year'
-              ng-disabled='ctrl.energy.month.count == 0'
+              ng-disabled='!ctrl.energy.month.first'
               translate
             )
             label(for='viewyear') Year
