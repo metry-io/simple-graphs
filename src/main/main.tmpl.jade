@@ -27,8 +27,7 @@
   .mry-chart-select-top
     .container-fluid
       .row
-        .col-sm-12.text-center
-          label.mry-form-label(translate) Show
+        .col-sm-12.text-center.mry-form-label
           .mry-radio
             input#viewday(
               type='radio'
@@ -95,8 +94,8 @@
         .col-sm-6
           label.mry-form-label(translate) Compare with
           div
-            div(ng-switch='ctrl.view')
-              div(ng-switch-when='day', style='display: inline-block')
+            div(ng-switch='ctrl.view', style='display: inline-block;')
+              div(ng-switch-when='day')
                 .mry-radio
                   input#daybefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='0')
                   label(for='daybefore', translate) Day before
@@ -105,25 +104,25 @@
                   label(for='weekbefore', translate) Week before
                 .mry-radio
                   input#daycustom(type='radio', ng-model='ctrl.comparePeriod', ng-value='"custom"')
-                  label(for='daycustom', translate) Custom day
+                  label(for='daycustom', translate) Custom:
               div(ng-switch-when='month')
                 .mry-radio
                   input#fourweeksbefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='0')
                   label(for='fourweeksbefore', translate) 4 weeks before
                 .mry-radio
                   input#yearbefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='1')
-                  label(for='yearbefore', translate) The year before
+                  label(for='yearbefore', translate) Year before
                 .mry-radio
                   input#custommonth(type='radio', ng-model='ctrl.comparePeriod', ng-value='"custom"')
-                  label(for='custommonth', translate) Custom month
+                  label(for='custommonth', translate) Custom:
               div(ng-switch-default)
                 .mry-radio
                   input#yearbefore(type='radio', ng-model='ctrl.comparePeriod', ng-value='0')
                   label(for='yearbefore', translate) The year before
                 .mry-radio
                   input#customyear(type='radio', ng-model='ctrl.comparePeriod', ng-value='"custom"')
-                  label(for='customyear', translate) Custom year
-            .mry-input-button()
+                  label(for='customyear', translate) Custom:
+            .mry-input-button.inline(style='vertical-align: middle;')
               input.mry-form-component(
                 type='text'
                 ng-model='ctrl.compareDatePicker.date'
