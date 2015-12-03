@@ -1,6 +1,6 @@
 var angular = require('angular');
 
-module.exports = /*@ngInject*/ function($rootScope, $timeout, $injector, $location, gettextCatalog, Alert) {
+module.exports = /*@ngInject*/ function($rootScope, $timeout, $injector, gettextCatalog, Alert) {
   function ResourceManager(resource, filter, refreshTime, onSelectedChanged) {
     var Resource, resourceName;
 
@@ -25,7 +25,7 @@ module.exports = /*@ngInject*/ function($rootScope, $timeout, $injector, $locati
     this.data = [];
     this.pagination = {};
     this.originalFilter = angular.copy(filter);
-    this.filter = angular.extend(filter || {}, $location.search());
+    this.filter = angular.copy(filter);
     this.filterChanged = false;
 
     this.selected = undefined;
@@ -64,7 +64,6 @@ module.exports = /*@ngInject*/ function($rootScope, $timeout, $injector, $locati
     }
 
     this.filter.skip = 0;
-    $location.search(this.filter).replace();
     this.getData();
     this.filterChanged = filterChanged(this.filter, this.originalFilter);
   };
@@ -72,7 +71,6 @@ module.exports = /*@ngInject*/ function($rootScope, $timeout, $injector, $locati
   // Called by pagination directive
   ResourceManager.prototype.updatePage = function updatePage() {
     this.filter.skip = this.pagination.limit * (this.pagination.page - 1);
-    $location.search(this.filter).replace();
     this.getData();
   };
 

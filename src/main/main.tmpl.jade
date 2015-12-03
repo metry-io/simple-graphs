@@ -160,8 +160,10 @@
       type='text'
       ng-model='search'
       ng-change='ctrl.resMgr.setFilterOption("q", search)'
+      ng-model-options='{debounce: 500}'
       placeholder='Search address or EAN'
     )
+  .mry-spinner.mry-spinner-white(ng-if='ctrl.resMgr.loading')
   ul
     li(
       ng-repeat='meter in ctrl.resMgr.data'
@@ -173,4 +175,4 @@
       )
         span {{ meter | mryMeterTitle }}
         span(style='float: right', ng-bind-html='meter | mryMeterTypeIcon')
-  mry-pagination(mry-resource-manager='ctrl.resMgr')
+  mry-pagination(mry-resource-manager='ctrl.resMgr', ng-if='ctrl.resMgr.pagination.count > ctrl.resMgr.filter.limit')

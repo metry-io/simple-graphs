@@ -53,7 +53,7 @@ module.exports = /*@ngInject*/ function(
   var _this = this;
   var chartDirty = false;
   var filter = {
-    limit: 10,
+    limit: 20,
     box: 'active',
     revoked: false
   };
@@ -187,11 +187,6 @@ module.exports = /*@ngInject*/ function(
     _this.datePicker.date = emDateUtil.getDate(maxPeriod);
     _this.comparePeriod = 0;
 
-    _this.chartConfig.options.yAxis = {
-      max: _this.energy[GRANULARITIES[_this.view]].max,
-      min: 0
-    };
-
     setChartDirty();
   });
 
@@ -255,6 +250,11 @@ module.exports = /*@ngInject*/ function(
     var comparePeriod = getComparePeriod();
 
     emConsumptions.get(_this.meter._id, granularity, [period, comparePeriod]).then(function(consumptions) {
+      _this.chartConfig.options.yAxis = {
+        max: _this.energy[GRANULARITIES[_this.view]].max,
+        min: 0
+      };
+
       setChartSeries(consumptions[0], granularity);
       _this.loadingChartData = false;
     });
