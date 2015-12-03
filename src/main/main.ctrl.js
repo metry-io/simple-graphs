@@ -28,10 +28,14 @@ var COMPARE_DATES = {
   year: [['years', -1]]
 };
 
-var SERIES_COLORS = [
-  "#7DB6E0",
-  "#3574A3"
-];
+var COLORS = {
+  series: [
+    "#36828F",
+    "#42A495"
+  ],
+  labels: '#7EB2D6',
+  gridLines: '#0E3A58'
+};
 
 module.exports = /*@ngInject*/ function(
   $scope,
@@ -97,10 +101,13 @@ module.exports = /*@ngInject*/ function(
       labels: {
         formatter: function() {
           return Highcharts.numberFormat(this.value, 1, ",", " ") + ' kWh';
+        },
+        style: {
+          color: 'white'
         }
       },
       title: { text: null },
-      gridLineColor: '#e2e2e2'
+      gridLineColor: COLORS.gridLines
     },
     xAxis: {
       labels: {
@@ -108,11 +115,14 @@ module.exports = /*@ngInject*/ function(
           var dateFilter;
           dateFilter = $filter('date');
           return dateFilter(this.value, X_AXIS_FORMATS[_this.view]);
+        },
+        style: {
+          color: COLORS.labels
         }
       }
     },
     options: {
-      colors: SERIES_COLORS,
+      colors: COLORS.series,
       tooltip: {
         formatter: function(a) {
           var dateFilter, format;
@@ -231,8 +241,8 @@ module.exports = /*@ngInject*/ function(
   function shouldGetChartData() {
     return (_this.hasData &&
             (_this.datePicker.date !== null) &&
-            (_this.comparePeriod !== null) &&
-            !(_this.comparePeriod === 'custom' && !_this.compareDatePicker.date));
+              (_this.comparePeriod !== null) &&
+                !(_this.comparePeriod === 'custom' && !_this.compareDatePicker.date));
   }
 
   function updateChartData() {

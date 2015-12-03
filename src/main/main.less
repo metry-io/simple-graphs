@@ -16,9 +16,10 @@ main {
   left: 0;
   right: 0;
   height: 35px;
-  background-color: @mry-bg-white;
+  background-color: white;
+  color: black;
   border-bottom: 1px solid darken(@mry-grey, 8%);
-  box-shadow: 0 0 5px 0 darken(@mry-grey, 18%);
+  box-shadow: 0 0 6px 0 black;
   z-index: 110;
 
   .mry-change-meter-button {
@@ -55,9 +56,13 @@ main {
   display: flex;
   flex-direction: column;
 
+  > .mry-chart-select-top { background-color: @joel-bg; }
+
   > .mry-chart-bg {
     flex: 1;
     position: relative;
+    background-color: @joel-bg;
+    background: linear-gradient(to bottom, @joel-bg, @joel-darker);
 
     .mry-chart-container {
       position: absolute;
@@ -71,6 +76,8 @@ main {
       }
     }
   }
+
+  > .mry-chart-select-bg { background-color: @joel-darker; }
 }
 
 @media screen and (min-width: @screen-xs) {
@@ -95,12 +102,8 @@ main {
   }
 }
 
-.mry-chart-bg {
-  background-color: @mry-grey;
-  background: linear-gradient(to bottom, @mry-grey, @mry-darker-grey);
-}
+@joel-darker: darken(@joel-bg, 3%);
 
-.mry-chart-select-bg { background-color: @mry-darker-grey; }
 
 
 .usermeters-list {
